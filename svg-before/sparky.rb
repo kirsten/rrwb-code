@@ -22,12 +22,12 @@ def text(center_x, center_y, font_family, font_size, fill, message)
     fill=\"#{fill}\" >#{message}</text>"
 end
 
-def line(x1, y1, x2, y2)
-  "<line x1=\"#{x1}\" y1=\"#{y1}\" x2=\"#{x2}\" y2=\"#{y2}\" stroke=\"#999\" stroke-width=\"1\" />"
+def line(x1, y1, x2, y2, stroke, stroke_width)
+  "<line x1=\"#{x1}\" y1=\"#{y1}\" x2=\"#{x2}\" y2=\"#{y2}\" stroke=\"#{stroke}\" stroke-width=\"#{stroke_width}\" />"
 end
 
-def polyline(points)
-  "<polyline fill=\"none\" stroke=\"#333\" stroke-width=\"1\" points = \"#{points.join(' ')}\" />"
+def polyline(fill, stroke, stroke_width, points)
+  "<polyline fill=\"#{fill}\" stroke=\"#{stroke}\" stroke-width=\"#{stroke_width}\" points = \"#{points.join(' ')}\" />"
 end
 
 def spark(center_x, center_y, value)
@@ -42,8 +42,8 @@ tosses.each_index { |i| points << "#{i},#{200-tosses[i]}" }
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
   <!-- x-axis -->
-  #{line(0, 200, NUMBER_OF_TOSSES, 200)}
-  #{polyline(points)}
+  #{line(0, 200, NUMBER_OF_TOSSES, 200, "#999", 1)}
+  #{polyline("none", "#333", 1, points)}
   #{spark(NUMBER_OF_TOSSES-1, 200-tosses[-1], tosses[-1])}
 </svg>"
 
