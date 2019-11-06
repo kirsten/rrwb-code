@@ -16,8 +16,20 @@ SQUARE_SIDE = 4
 SQUARE_COLOR = "red"
 
 def spark(center_x, center_y, value)
-  "#{SVG.rect(center_x - (SQUARE_SIDE / 2), center_y - (SQUARE_SIDE / 2), SQUARE_SIDE, SQUARE_SIDE, SQUARE_COLOR, "none", 0)}\"
-   #{SVG.text(center_x, center_y, "Verdana", 9, SQUARE_COLOR, value)}"
+  "<!-- spark -->
+  #{SVG.rect(center_x - (SQUARE_SIDE / 2), center_y - (SQUARE_SIDE / 2), SQUARE_SIDE, SQUARE_SIDE, SQUARE_COLOR, "none", 0)}\"
+  <!-- final value -->
+  #{SVG.text(center_x, center_y, "Verdana", 9, SQUARE_COLOR, value)}"
+end
+
+def x_axis
+  "<!-- x-axis -->
+  #{SVG.line(0, 200, NUMBER_OF_TOSSES, 200, "#999", 1)}"
+end
+
+def sparkline(points)
+  "<!-- sparkline -->
+  #{SVG.polyline("none", "#333", 1, points)}"
 end
 
 tosses = values(NUMBER_OF_TOSSES)
@@ -26,9 +38,8 @@ tosses.each_index { |i| points << "#{i},#{200-tosses[i]}" }
 
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
-  <!-- x-axis -->
-  #{SVG.line(0, 200, NUMBER_OF_TOSSES, 200, "#999", 1)}
-  #{SVG.polyline("none", "#333", 1, points)}
+  #{x_axis}
+  #{sparkline(points)}
   #{spark(NUMBER_OF_TOSSES-1, 200-tosses[-1], tosses[-1])}
 </svg>"
 
