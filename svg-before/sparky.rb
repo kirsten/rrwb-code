@@ -10,13 +10,21 @@ def values(n)
   a
 end
 
-def spark(centre_x, centre_y, value)
-  "<rect x=\"#{centre_x-2}\" y=\"#{centre_y-2}\"
+def rect(center_x, center_y)
+  "<rect x=\"#{center_x - 2}\" y=\"#{center_y - 2}\"
     width=\"4\" height=\"4\"
-    fill=\"red\" stroke=\"none\" stroke-width=\"0\" />
-  <text x=\"#{centre_x+6}\" y=\"#{centre_y+4}\"
+    fill=\"red\" stroke=\"none\" stroke-width=\"0\" />"
+end
+
+def text(center_x, center_y, value)
+  "<text x=\"#{center_x + 6}\" y=\"#{center_y + 4}\"
     font-family=\"Verdana\" font-size=\"9\"
     fill=\"red\" >#{value}</text>"
+end
+
+def spark(center_x, center_y, value)
+  "#{rect(center_x, center_y)}\"
+   #{text(center_x, center_y, value)}"
 end
 
 $tosses = values(NUMBER_OF_TOSSES)
