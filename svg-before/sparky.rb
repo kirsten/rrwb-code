@@ -10,10 +10,10 @@ def values(n)
   a
 end
 
-def rect(center_x, center_y)
+def rect(center_x, center_y, width, height, fill, stroke, stroke_width)
   "<rect x=\"#{center_x - 2}\" y=\"#{center_y - 2}\"
-    width=\"4\" height=\"4\"
-    fill=\"red\" stroke=\"none\" stroke-width=\"0\" />"
+    width=\"#{width}\" height=\"#{height}\"
+    fill=\"#{fill}\" stroke=\"#{stroke}\" stroke-width=\"#{stroke_width}\" />"
 end
 
 def text(center_x, center_y, value)
@@ -31,7 +31,7 @@ def polyline(points)
 end
 
 def spark(center_x, center_y, value)
-  "#{rect(center_x, center_y)}\"
+  "#{rect(center_x, center_y, 4, 4, "red", "none", 0)}\"
    #{text(center_x, center_y, value)}"
 end
 
