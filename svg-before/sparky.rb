@@ -35,16 +35,16 @@ def spark(center_x, center_y, value)
    #{text(center_x, center_y, value)}"
 end
 
-$tosses = values(NUMBER_OF_TOSSES)
+tosses = values(NUMBER_OF_TOSSES)
 points = []
-$tosses.each_index { |i| points << "#{i},#{200-$tosses[i]}" }
+tosses.each_index { |i| points << "#{i},#{200-tosses[i]}" }
 
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
   <!-- x-axis -->
   #{line(0, 200, NUMBER_OF_TOSSES, 200)}
   #{polyline(points)}
-  #{spark(NUMBER_OF_TOSSES-1, 200-$tosses[-1], $tosses[-1])}
+  #{spark(NUMBER_OF_TOSSES-1, 200-tosses[-1], tosses[-1])}
 </svg>"
 
 puts "Content-Type: image/svg+xml
