@@ -31,10 +31,11 @@ def polyline(fill, stroke, stroke_width, points)
 end
 
 SQUARE_SIDE = 4
+SQUARE_COLOR = "red"
 
 def spark(center_x, center_y, value)
-  "#{rect(center_x - (SQUARE_SIDE / 2), center_y - (SQUARE_SIDE / 2), SQUARE_SIDE, SQUARE_SIDE, "red", "none", 0)}\"
-   #{text(center_x, center_y, "Verdana", 9, "red", value)}"
+  "#{rect(center_x - (SQUARE_SIDE / 2), center_y - (SQUARE_SIDE / 2), SQUARE_SIDE, SQUARE_SIDE, SQUARE_COLOR, "none", 0)}\"
+   #{text(center_x, center_y, "Verdana", 9, SQUARE_COLOR, value)}"
 end
 
 tosses = values(NUMBER_OF_TOSSES)
