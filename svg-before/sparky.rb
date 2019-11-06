@@ -16,10 +16,10 @@ def rect(center_x, center_y, width, height, fill, stroke, stroke_width)
     fill=\"#{fill}\" stroke=\"#{stroke}\" stroke-width=\"#{stroke_width}\" />"
 end
 
-def text(center_x, center_y, value)
+def text(center_x, center_y, font_family, font_size, fill, message)
   "<text x=\"#{center_x + 6}\" y=\"#{center_y + 4}\"
-    font-family=\"Verdana\" font-size=\"9\"
-    fill=\"red\" >#{value}</text>"
+    font-family=\"#{font_family}\" font-size=\"#{font_size}\"
+    fill=\"#{fill}\" >#{message}</text>"
 end
 
 def line(x1, y1, x2, y2)
@@ -32,7 +32,7 @@ end
 
 def spark(center_x, center_y, value)
   "#{rect(center_x, center_y, 4, 4, "red", "none", 0)}\"
-   #{text(center_x, center_y, value)}"
+   #{text(center_x, center_y, "Verdana", 9, "red", value)}"
 end
 
 tosses = values(NUMBER_OF_TOSSES)
