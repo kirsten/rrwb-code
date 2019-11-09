@@ -43,13 +43,13 @@ def values(n)
   a
 end
 
-sp = Sparkline.new(values(1000))
+sparkline = Sparkline.new(values(1000))
 
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
-  #{sp.x_axis}
-  #{sp.sparkline}
-  #{sp.spark}
+  #{sparkline.x_axis}
+  #{sparkline.sparkline}
+  #{sparkline.spark}
 </svg>"
 
 puts "Content-Type: image/svg+xml
