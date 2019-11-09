@@ -40,7 +40,7 @@ data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
   #{x_axis(points)}
   #{sparkline(points)}
-  #{spark(NUMBER_OF_TOSSES-1, 200-tosses[-1], tosses[-1])}
+  #{spark(tosses.length - 1, 200 - tosses[-1], tosses[-1])}
 </svg>"
 
 puts "Content-Type: image/svg+xml
