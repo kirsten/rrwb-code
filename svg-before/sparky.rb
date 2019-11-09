@@ -14,9 +14,9 @@ SQUARE_SIDE = 4
 SQUARE_COLOR = "red"
 
 def spark(tosses)
-  center_x = tosses.length - 1
-  center_y = 200 - tosses[-1]
   final_value = tosses[-1]
+  center_x = tosses.length - 1
+  center_y = 200 - final_value
   "<!-- spark -->
   #{SVG.rect(center_x - (SQUARE_SIDE / 2), center_y - (SQUARE_SIDE / 2), SQUARE_SIDE, SQUARE_SIDE, SQUARE_COLOR, "none", 0)}\"
   <!-- final value -->
