@@ -13,11 +13,14 @@ end
 SQUARE_SIDE = 4
 SQUARE_COLOR = "red"
 
-def spark(center_x, center_y, value)
+def spark(tosses)
+  center_x = tosses.length - 1
+  center_y = 200 - tosses[-1]
+  final_value = tosses[-1]
   "<!-- spark -->
   #{SVG.rect(center_x - (SQUARE_SIDE / 2), center_y - (SQUARE_SIDE / 2), SQUARE_SIDE, SQUARE_SIDE, SQUARE_COLOR, "none", 0)}\"
   <!-- final value -->
-  #{SVG.text(center_x, center_y, "Verdana", 9, SQUARE_COLOR, value)}"
+  #{SVG.text(center_x, center_y, "Verdana", 9, SQUARE_COLOR, final_value)}"
 end
 
 def x_axis(points)
@@ -38,7 +41,7 @@ data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
   #{x_axis(points)}
   #{sparkline(points)}
-  #{spark(tosses.length - 1, 200 - tosses[-1], tosses[-1])}
+  #{spark(tosses)}
 </svg>"
 
 puts "Content-Type: image/svg+xml
