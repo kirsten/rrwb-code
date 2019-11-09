@@ -7,6 +7,15 @@ class Sparkline
     @y_values = y_values
   end
 
+  def to_svg
+    "<svg xmlns=\"http://www.w3.org/2000/svg\"
+         xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
+      #{x_axis}
+      #{sparkline}
+      #{spark}
+    </svg>"
+  end
+
   SQUARE_SIDE = 4
   SQUARE_COLOR = "red"
 
@@ -45,12 +54,7 @@ end
 
 sparkline = Sparkline.new(values(1000))
 
-data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
-     xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
-  #{sparkline.x_axis}
-  #{sparkline.sparkline}
-  #{sparkline.spark}
-</svg>"
+data = sparkline.to_svg
 
 puts "Content-Type: image/svg+xml
 Content-Length: #{data.length}
