@@ -1,14 +1,22 @@
 require_relative 'sparkline'
 
-def toss
-  2 * (rand(2)*2 - 1)
+def zero_or_one
+  rand(2)
 end
 
-def values(n)
-  a = [0]
-  n.times { a << (toss + a[-1]) }
-  a
+def one_or_minus_one
+  (zero_or_one * 2) - 1
 end
 
-puts Sparkline.new(values(1000)).to_svg
+def next_value(y_values)
+  y_values[-1] + one_or_minus_one
+end
+
+def y_values
+  result = [0]
+  1000.times { result << next_value(result) }
+  result
+end
+
+puts Sparkline.new(y_values).to_svg
 
