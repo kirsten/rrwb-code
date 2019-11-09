@@ -2,16 +2,26 @@ require_relative 'svg'
 
 class Sparkline
   def initialize(y_values)
-    @y_values = y_values
+    @height_above_x_axis = y_values.max
+    @height_below_x_axis = y_values.min
+    @final_value = y_values[-1]
+    @y_values = reflect_top_and_bottom(y_values)
   end
 
   def to_svg
+    height_above_x_axis = 200
     "<svg xmlns=\"http://www.w3.org/2000/svg\"
          xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
-      #{x_axis}
-      #{sparkline}
-      #{spark}
+      <g transform=\"translate(0, #{height_above_x_axis})\">
+        #{x_axis}
+        #{sparkline}
+        #{spark}
+      </g>
     </svg>"
+  end
+
+  def reflect_top_and_bottom(y_values)
+    y_values.map { |y| -y }
   end
 
   private
@@ -23,24 +33,23 @@ class Sparkline
 
   def x_axis
     "<!-- x-axis -->
-    #{SVG.line(0, 200, y_values.length, 200, "#999", 1)}"
+    #{SVG.line(0, 0, y_values.length, 0, "#999", 1)}"
   end
 
   def sparkline
     points = []
-    y_values.each_index { |i| points << "#{i},#{200 - y_values[i]}" }
+    y_values.each_index { |i| points << "#{i},#{y_values[i]}" }
     "<!-- sparkline -->
     #{SVG.polyline("none", "#333", 1, points)}"
   end
 
   def spark
-    final_value = y_values[-1]
     center_x = y_values.length - 1
-    center_y = 200 - final_value
+    center_y = y_values[-1]
     "<!-- spark -->
     #{SVG.rect(center_x - (SQUARE_SIDE / 2), center_y - (SQUARE_SIDE / 2), SQUARE_SIDE, SQUARE_SIDE, SQUARE_COLOR, "none", 0)}\"
     <!-- final value -->
-    #{SVG.text(center_x, center_y, "Verdana", 9, SQUARE_COLOR, final_value)}"
+    #{SVG.text(center_x + 6, center_y + 4, "Verdana", 9, SQUARE_COLOR, @final_value)}"
   end
 end
 
