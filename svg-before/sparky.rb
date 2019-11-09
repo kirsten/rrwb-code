@@ -28,19 +28,19 @@ def x_axis(y_values)
   #{SVG.line(0, 200, y_values.length, 200, "#999", 1)}"
 end
 
-def sparkline(points)
+def sparkline(y_values)
+  points = []
+  y_values.each_index { |i| points << "#{i},#{200 - y_values[i]}" }
   "<!-- sparkline -->
   #{SVG.polyline("none", "#333", 1, points)}"
 end
 
 tosses = values(1000)
-points = []
-tosses.each_index { |i| points << "#{i},#{200-tosses[i]}" }
 
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
   #{x_axis(tosses)}
-  #{sparkline(points)}
+  #{sparkline(tosses)}
   #{spark(tosses)}
 </svg>"
 
