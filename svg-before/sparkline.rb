@@ -3,16 +3,14 @@ require_relative 'svg'
 class Sparkline
   def initialize(y_values)
     @height_above_x_axis = y_values.max
-    @height_below_x_axis = y_values.min
     @final_value = y_values[-1]
     @y_values = reflect_top_and_bottom(y_values)
   end
 
   def to_svg
-    height_above_x_axis = 200
     "<svg xmlns=\"http://www.w3.org/2000/svg\"
          xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
-      <g transform=\"translate(0, #{height_above_x_axis})\">
+      <g transform=\"translate(0, #{@height_above_x_axis})\">
         #{x_axis}
         #{sparkline}
         #{spark}
