@@ -11,6 +11,13 @@ class Sparkline
     "<!-- x-axis -->
     #{SVG.line(0, 200, y_values.length, 200, "#999", 1)}"
   end
+
+  def sparkline
+    points = []
+    y_values.each_index { |i| points << "#{i},#{200 - y_values[i]}" }
+    "<!-- sparkline -->
+    #{SVG.polyline("none", "#333", 1, points)}"
+  end
 end
 
 def toss
@@ -36,19 +43,12 @@ def spark(y_values)
   #{SVG.text(center_x, center_y, "Verdana", 9, SQUARE_COLOR, final_value)}"
 end
 
-def sparkline(y_values)
-  points = []
-  y_values.each_index { |i| points << "#{i},#{200 - y_values[i]}" }
-  "<!-- sparkline -->
-  #{SVG.polyline("none", "#333", 1, points)}"
-end
-
 sp = Sparkline.new(values(1000))
 
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
   #{sp.x_axis}
-  #{sparkline(sp.y_values)}
+  #{sp.sparkline}
   #{spark(sp.y_values)}
 </svg>"
 
