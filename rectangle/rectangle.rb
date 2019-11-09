@@ -1,5 +1,5 @@
 class Rectangle
-  attr_reader :top_left, :width, :height
+  attr_reader :width, :height
 
   def initialize(point, width, height)
     @top_left = point
