@@ -45,11 +45,13 @@ end
 
 tosses = values(1000)
 
+sp = Sparkline.new(values(1000))
+
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
-  #{x_axis(tosses)}
-  #{sparkline(tosses)}
-  #{spark(tosses)}
+  #{x_axis(sp.y_values)}
+  #{sparkline(sp.y_values)}
+  #{spark(sp.y_values)}
 </svg>"
 
 puts "Content-Type: image/svg+xml
