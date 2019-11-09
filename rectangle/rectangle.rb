@@ -29,4 +29,4 @@ puts rect
 
 # Want to avoid rectangle having knowledge of the implementation of point when
 # finding the x-coordinate of the rectangle's left edge.
-puts rect.top_left.x
+puts rect.left_edge
