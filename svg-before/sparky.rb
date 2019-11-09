@@ -43,8 +43,6 @@ def sparkline(y_values)
   #{SVG.polyline("none", "#333", 1, points)}"
 end
 
-tosses = values(1000)
-
 sp = Sparkline.new(values(1000))
 
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
