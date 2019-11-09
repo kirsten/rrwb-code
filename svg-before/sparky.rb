@@ -1,8 +1,6 @@
 require_relative 'svg'
 
 class Sparkline
-  attr_reader :y_values
-
   def initialize(y_values)
     @y_values = y_values
   end
@@ -15,6 +13,10 @@ class Sparkline
       #{spark}
     </svg>"
   end
+
+  private
+
+  attr_reader :y_values
 
   SQUARE_SIDE = 4
   SQUARE_COLOR = "red"
