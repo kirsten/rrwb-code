@@ -6,6 +6,10 @@ class Rectangle
     @width = width
     @height = height
   end
+
+  def left_edge
+    @top_left.x
+  end
 end
 
 class Point
