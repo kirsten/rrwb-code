@@ -22,9 +22,9 @@ def spark(center_x, center_y, value)
   #{SVG.text(center_x, center_y, "Verdana", 9, SQUARE_COLOR, value)}"
 end
 
-def x_axis
+def x_axis(points)
   "<!-- x-axis -->
-  #{SVG.line(0, 200, NUMBER_OF_TOSSES, 200, "#999", 1)}"
+  #{SVG.line(0, 200, points.length, 200, "#999", 1)}"
 end
 
 def sparkline(points)
@@ -38,7 +38,7 @@ tosses.each_index { |i| points << "#{i},#{200-tosses[i]}" }
 
 data = "<svg xmlns=\"http://www.w3.org/2000/svg\"
      xmlns:xlink=\"http://www.w3.org/1999/xlink\" >
-  #{x_axis}
+  #{x_axis(points)}
   #{sparkline(points)}
   #{spark(NUMBER_OF_TOSSES-1, 200-tosses[-1], tosses[-1])}
 </svg>"
