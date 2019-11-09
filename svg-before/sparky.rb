@@ -1,7 +1,5 @@
 require_relative 'svg'
 
-NUMBER_OF_TOSSES = 1000
-
 def toss
   2 * (rand(2)*2 - 1)
 end
@@ -32,7 +30,7 @@ def sparkline(points)
   #{SVG.polyline("none", "#333", 1, points)}"
 end
 
-tosses = values(NUMBER_OF_TOSSES)
+tosses = values(1000)
 points = []
 tosses.each_index { |i| points << "#{i},#{200-tosses[i]}" }
 
