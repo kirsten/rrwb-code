@@ -54,11 +54,5 @@ def values(n)
   a
 end
 
-sparkline = Sparkline.new(values(1000))
+puts Sparkline.new(values(1000)).to_svg
 
-data = sparkline.to_svg
-
-puts "Content-Type: image/svg+xml
-Content-Length: #{data.length}
-
-#{data}"
