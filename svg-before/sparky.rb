@@ -1,5 +1,13 @@
 require_relative 'svg'
 
+class Sparkline
+  attr_reader :y_values
+
+  def initialize(y_values)
+    @y_values = y_values
+  end
+end
+
 def toss
   2 * (rand(2)*2 - 1)
 end
