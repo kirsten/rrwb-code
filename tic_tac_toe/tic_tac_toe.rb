@@ -1,8 +1,8 @@
 class Game
   attr_accessor :board
 
-  def initialize(s, position=nil, player=nil)
-    @board = s.dup
+  def initialize(board, position=nil, player=nil)
+    @board = board.dup
     @board[position] = player unless position == nil
   end
 
