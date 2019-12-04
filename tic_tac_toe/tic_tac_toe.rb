@@ -7,16 +7,18 @@ class Game
   end
 
   def move(player)
-    (0..8).each do |i|
-      if position_empty?(board, i)
-        game = play(i, player)
-        return i if game.winner() == player
+    (0..8).each do |position|
+      if position_empty?(board, position)
+        game = play(position, player)
+        return position if game.winner() == player
       end
     end
 
-    (0..8).each { |i| return i if board[i,1] == '-' }
+    (0..8).each { |position| return position if board[position,1] == '-' }
     return -1
   end
+
+  
 
   def position_empty?(board, position)
     board[position,1] == '-'
