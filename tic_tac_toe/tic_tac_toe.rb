@@ -7,9 +7,10 @@ class Game
   end
 
   def move(player)
-    return find_winning_move(player) if find_winning_move(player)
+    winning_move = find_winning_move(player)
+    return winning_move if winning_move
 
-    (0..8).each { |position| return position if board[position,1] == '-' }
+    return find_first_empty_position if find_first_empty_position
     return -1
   end
 
@@ -22,6 +23,12 @@ class Game
       end
     end
     winning_move
+  end
+
+  def find_first_empty_position
+    empty_position = nil 
+    (0..8).each { |position| empty_position = position if board[position,1] == '-'; break if empty_position }
+    empty_position
   end
 
   def position_empty?(board, position)
