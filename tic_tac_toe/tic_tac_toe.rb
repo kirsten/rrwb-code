@@ -2,8 +2,9 @@ class Game
   attr_accessor :board
 
   def initialize(board, position=nil, player=nil)
-    @board = board.dup
-    @board[position] = player unless position == nil
+    temp_board = Board.new(board.dup)
+    @board = temp_board
+    temp_board.place_mark_at(position, player) if position != nil
   end
 
   def move(player)
@@ -27,7 +28,7 @@ class Game
 
   def find_first_empty_position
     empty_position = nil 
-    (0..8).each { |position| empty_position = position if board[position,1] == '-'; break if empty_position }
+    (0..8).each { |position| empty_position = position if position_empty?(board, position); break if empty_position }
     empty_position
   end
 
@@ -36,7 +37,7 @@ class Game
   end
 
   def play(i, player)
-    Game.new(board, i, player)
+    Game.new(board._board, i, player)
   end
 
   def winner
@@ -54,4 +55,21 @@ class Game
     end
     return '-'
   end
+end
+
+class Board
+  attr_accessor :_board
+
+  def initialize(_board)
+    @_board = _board
+  end
+
+  def [](start, stop = 1)
+    _board[start, stop]
+  end
+
+  def place_mark_at(position, mark)
+    @_board[position] = mark 
+  end
+  
 end
