@@ -3,7 +3,7 @@ class Game
 
   def initialize(board, position=nil, player=nil)
     @board = board.dup
-    @board[position] = player unless position == nil
+    update_board(position, player) unless position == nil
   end
 
   def move(player)
