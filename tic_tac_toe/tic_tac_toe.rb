@@ -26,7 +26,7 @@ class Game
   end
 
   def find_first_empty_position
-    empty_position = nil 
+    empty_position = nil
     (0..8).each { |position| empty_position = position if board[position,1] == '-'; break if empty_position }
     empty_position
   end
@@ -53,5 +53,15 @@ class Game
       return board[6,1]
     end
     return '-'
+  end
+
+  private
+
+  def get_board;
+    @board
+  end
+
+  def update_board(position, player)
+    @board[position] = player
   end
 end
