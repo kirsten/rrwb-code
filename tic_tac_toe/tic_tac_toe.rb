@@ -1,6 +1,4 @@
 class Game
-  attr_accessor :board
-
   def initialize(board, position=nil, player=nil)
     @board = board.dup
     update_board(position, player) unless position == nil
