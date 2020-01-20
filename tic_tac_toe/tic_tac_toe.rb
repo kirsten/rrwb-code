@@ -49,7 +49,7 @@ class Game
   private
 
   def position_empty?(position)
-    mark_at(position) == '-'
+    @board.position_empty?(position)
   end
 
   def mark_at(starting)
@@ -80,5 +80,9 @@ class Board
 
   def place_mark_at(position, mark)
     @board[position] = mark
+  end
+
+  def position_empty?(position)
+    mark_at(position) == '-'
   end
 end
