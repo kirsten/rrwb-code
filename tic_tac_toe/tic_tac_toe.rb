@@ -25,12 +25,12 @@ class Game
 
   def find_first_empty_position
     empty_position = nil
-    (0..8).each { |position| empty_position = position if mark_at(position, 1) == '-'; break if empty_position }
+    (0..8).each { |position| empty_position = position if mark_at(position) == '-'; break if empty_position }
     empty_position
   end
 
   def position_empty?(position)
-    mark_at(position, 1) == '-'
+    mark_at(position) == '-'
   end
 
   def play(i, player)
@@ -38,22 +38,22 @@ class Game
   end
 
   def winner
-    if mark_at(0, 1) != '-' && mark_at(0, 1) == mark_at(1, 1) && mark_at(1, 1) == mark_at(2, 1)
-      return mark_at(0, 1)
+    if mark_at(0) != '-' && mark_at(0) == mark_at(1) && mark_at(1) == mark_at(2)
+      return mark_at(0)
     end
-    if mark_at(3, 1) != '-' && mark_at(3, 1) == mark_at(4, 1) && mark_at(4, 1) == mark_at(5, 1)
-      return mark_at(3, 1)
+    if mark_at(3) != '-' && mark_at(3) == mark_at(4) && mark_at(4) == mark_at(5)
+      return mark_at(3)
     end
-    if mark_at(6, 1) != '-' && mark_at(6, 1) == mark_at(7, 1) && mark_at(7, 1) == mark_at(8, 1)
-      return mark_at(6, 1)
+    if mark_at(6) != '-' && mark_at(6) == mark_at(7) && mark_at(7) == mark_at(8)
+      return mark_at(6)
     end
     return '-'
   end
 
   private
 
-  def mark_at(starting, ending)
-    board[starting, ending]
+  def mark_at(starting)
+    board[starting, 1]
   end
 
   def place_mark_at(position, player)
