@@ -25,7 +25,7 @@ class Game
 
   def find_first_empty_position
     empty_position = nil
-    (0..8).each { |position| empty_position = position if mark_at(position) == '-'; break if empty_position }
+    (0..8).each { |position| empty_position = position if position_empty?(position); break if empty_position }
     empty_position
   end
 
