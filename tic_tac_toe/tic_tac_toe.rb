@@ -1,7 +1,7 @@
 class Game
   def initialize(board, position=nil, player=nil)
     @board = board.dup
-    update_board(position, player) unless position == nil
+    place_mark_at(position, player) unless position == nil
   end
 
   def move(player)
@@ -59,7 +59,7 @@ class Game
     @board
   end
 
-  def update_board(position, player)
+  def place_mark_at(position, player)
     @board[position] = player
   end
 end
