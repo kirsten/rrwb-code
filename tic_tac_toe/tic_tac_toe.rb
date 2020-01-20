@@ -34,13 +34,13 @@ class Game
   end
 
   def winner
-    if mark_at(0) != '-' && mark_at(0) == mark_at(1) && mark_at(1) == mark_at(2)
+    if !position_empty?(0) && mark_at(0) == mark_at(1) && mark_at(1) == mark_at(2)
       return mark_at(0)
     end
-    if mark_at(3) != '-' && mark_at(3) == mark_at(4) && mark_at(4) == mark_at(5)
+    if !position_empty?(3) && mark_at(3) == mark_at(4) && mark_at(4) == mark_at(5)
       return mark_at(3)
     end
-    if mark_at(6) != '-' && mark_at(6) == mark_at(7) && mark_at(7) == mark_at(8)
+    if !position_empty?(6) && mark_at(6) == mark_at(7) && mark_at(7) == mark_at(8)
       return mark_at(6)
     end
     return '-'
