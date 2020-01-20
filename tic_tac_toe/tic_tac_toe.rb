@@ -57,7 +57,7 @@ class Game
   end
 
   def place_mark_at(position, player)
-    board[position] = player
+    @board.place_mark_at(position, player)
   end
 
   def board
@@ -76,5 +76,9 @@ class Board
 
   def mark_at(position)
     @board[position]
+  end
+
+  def place_mark_at(position, mark)
+    @board[position] = mark
   end
 end
