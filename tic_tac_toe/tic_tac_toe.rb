@@ -35,13 +35,9 @@ class Game
 
   def winner
     return mark_at(0) if player_wins_row?(0)
+    return mark_at(3) if player_wins_row?(3)
+    return mark_at(6) if player_wins_row?(6)
 
-    if !position_empty?(3) && mark_at(3) == mark_at(4) && mark_at(4) == mark_at(5)
-      return mark_at(3)
-    end
-    if !position_empty?(6) && mark_at(6) == mark_at(7) && mark_at(7) == mark_at(8)
-      return mark_at(6)
-    end
     return '-'
   end
 
