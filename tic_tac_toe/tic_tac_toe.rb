@@ -53,7 +53,7 @@ class Game
   end
 
   def mark_at(starting)
-    board[starting, 1]
+    @board.mark_at(starting)
   end
 
   def place_mark_at(position, player)
@@ -72,5 +72,9 @@ class Board
 
   def to_s
     @board
+  end
+
+  def mark_at(position)
+    @board[position]
   end
 end
