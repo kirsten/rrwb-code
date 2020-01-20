@@ -29,10 +29,6 @@ class Game
     empty_position
   end
 
-  def position_empty?(position)
-    mark_at(position) == '-'
-  end
-
   def play(i, player)
     Game.new(board, i, player)
   end
@@ -51,6 +47,10 @@ class Game
   end
 
   private
+
+  def position_empty?(position)
+    mark_at(position) == '-'
+  end
 
   def mark_at(starting)
     board[starting, 1]
