@@ -1,6 +1,6 @@
 class Game
   def initialize(board, position=nil, player=nil)
-    @board = board.dup
+    @board = Board.new(board.dup)
     place_mark_at(position, player) unless position == nil
   end
 
@@ -61,12 +61,16 @@ class Game
   end
 
   def board
-    @board
+    @board.to_s
   end
 end
 
 class Board
   def initialize(board)
     @board = board
+  end
+
+  def to_s
+    @board
   end
 end
