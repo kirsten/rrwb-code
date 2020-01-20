@@ -34,9 +34,8 @@ class Game
   end
 
   def winner
-    if !position_empty?(0) && mark_at(0) == mark_at(1) && mark_at(1) == mark_at(2)
-      return mark_at(0)
-    end
+    return mark_at(0) if player_wins_row?(0)
+
     if !position_empty?(3) && mark_at(3) == mark_at(4) && mark_at(4) == mark_at(5)
       return mark_at(3)
     end
@@ -48,8 +47,12 @@ class Game
 
   private
 
-  def position_empty?(position)
-    @board.position_empty?(position)
+  def player_wins_row?(row_start)
+    if !position_empty?(row_start) &&
+        mark_at(row_start) == mark_at(row_start + 1) &&
+        mark_at(row_start + 1) == mark_at(row_start + 2)
+      return mark_at(row_start)
+    end
   end
 
   def position_empty?(position)
