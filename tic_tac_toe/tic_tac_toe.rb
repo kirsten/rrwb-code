@@ -1,7 +1,7 @@
 class Game
   def initialize(board, position=nil, player=nil)
     @board = Board.new(board.dup)
-    place_mark_at(position, player) unless position == nil
+    @board.place_mark_at(position, player) unless position == nil
   end
 
   def move(player)
@@ -30,7 +30,7 @@ class Game
   end
 
   def play(i, player)
-    Game.new(board, i, player)
+    Game.new(board.to_s, i, player)
   end
 
   def winner
@@ -52,16 +52,16 @@ class Game
     @board.position_empty?(position)
   end
 
-  def mark_at(starting)
-    @board.mark_at(starting)
+  def position_empty?(position)
+    board.position_empty?(position)
   end
 
-  def place_mark_at(position, player)
-    @board.place_mark_at(position, player)
+  def mark_at(starting)
+    board.mark_at(starting)
   end
 
   def board
-    @board.to_s
+    @board
   end
 end
 
