@@ -58,22 +58,19 @@ class Game
 end
 
 class Board
-  attr_accessor :_board
-
   def initialize(_board)
-    @_board = _board
+    @board = _board
   end
   
   def to_s
-    _board
+    @board
   end
 
   def [](start, stop = 1)
-    _board[start, stop]
+    @board[start, stop]
   end
 
   def place_mark_at(position, mark)
-    @_board[position] = mark 
+    @board[position] = mark 
   end
-  
 end
