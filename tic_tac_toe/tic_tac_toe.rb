@@ -37,7 +37,7 @@ class Game
   end
 
   def play(i, player)
-    Game.new(board._board, i, player)
+    Game.new(board.to_s, i, player)
   end
 
   def winner
@@ -62,6 +62,10 @@ class Board
 
   def initialize(_board)
     @_board = _board
+  end
+  
+  def to_s
+    _board
   end
 
   def [](start, stop = 1)
