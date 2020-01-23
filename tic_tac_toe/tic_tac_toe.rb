@@ -1,10 +1,9 @@
 class Game
   attr_accessor :board
 
-  def initialize(board, position=nil, player=nil)
-    temp_board = Board.new(board.dup)
-    @board = temp_board
-    temp_board.place_mark_at(position, player) if position != nil
+  def initialize(board_s, position=nil, player=nil)
+    @board = Board.new(board_s)
+    @board.place_mark_at(position, player) if position != nil
   end
 
   def move(player)
@@ -58,8 +57,8 @@ class Game
 end
 
 class Board
-  def initialize(_board)
-    @board = _board
+  def initialize(board)
+    @board = board.dup
   end
   
   def to_s
