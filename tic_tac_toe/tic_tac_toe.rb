@@ -17,7 +17,7 @@ class Game
   def find_winning_move(player)
     winning_move = nil
     (0..8).each do |position|
-      if position_empty?(board, position)
+      if @board.position_empty?(position)
         game = play(position, player)
         winning_move = position if game.winner() == player
       end
@@ -27,12 +27,8 @@ class Game
 
   def find_first_empty_position
     empty_position = nil 
-    (0..8).each { |position| empty_position = position if position_empty?(board, position); break if empty_position }
+    (0..8).each { |position| empty_position = position if @board.position_empty?(position); break if empty_position }
     empty_position
-  end
-
-  def position_empty?(board, position)
-    board[position,1] == '-'
   end
 
   def play(i, player)
@@ -71,5 +67,9 @@ class Board
 
   def place_mark_at(position, mark)
     @board[position] = mark 
+  end
+
+  def position_empty?(position)
+    @board[position,1] == '-'
   end
 end
