@@ -36,19 +36,20 @@ class Game
   end
 
   def winner
-    if board[0,1] != '-' && board[0,1] == board[1,1] &&
-        board[1,1] == board[2,1]
-      return board[0,1]
+    if row_is_the_same_player(0)
+      return board[0]
     end
-    if board[3,1] != '-' && board[3,1] == board[4,1] &&
-        board[4,1] == board[5,1]
-      return board[3,1]
+    if row_is_the_same_player(3)
+      return board[3]
     end
-    if board[6,1] != '-' && board[6,1] == board[7,1] &&
-        board[7,1] == board[8,1]
-      return board[6,1]
+    if row_is_the_same_player(6)
+      return board[6]
     end
     return '-'
+  end
+
+  def row_is_the_same_player(row)
+    board[row] != '-' && board[row] == board[row + 1] && board[row + 1] == board[row + 2]
   end
 end
 
@@ -56,17 +57,17 @@ class Board
   def initialize(board)
     @board = board.dup
   end
-  
+
   def to_s
     @board
   end
 
-  def [](start, stop = 1)
-    @board[start, stop]
+  def [](position)
+    @board[position, 1]
   end
 
   def place_mark_at(position, mark)
-    @board[position] = mark 
+    @board[position] = mark
   end
 
   def position_empty?(position)
