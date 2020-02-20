@@ -38,7 +38,8 @@ class Game
   def winner
     (0...2).each do |row|
       if row_is_the_same_player(starting_position(row))
-        return board[starting_position(row)]
+        winning_mark = board[starting_position(row)]
+        return winning_mark
       end
     end
     return '-'
