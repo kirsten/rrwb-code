@@ -36,17 +36,16 @@ class Game
   end
 
   def winner
-    (0...2).each do |idx|
-      if row_is_the_same_player(row_index(idx))
-        return board[row_index(idx)]
+    (0...2).each do |row|
+      if row_is_the_same_player(starting_position(row))
+        return board[starting_position(row)]
       end
     end
-
     return '-'
   end
 
-  def row_index(index)
-    index * 3
+  def starting_position(row)
+    row * 3
   end
 
   def row_is_the_same_player(position)
