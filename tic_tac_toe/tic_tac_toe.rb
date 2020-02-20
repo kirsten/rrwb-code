@@ -36,20 +36,21 @@ class Game
   end
 
   def winner
-    if row_is_the_same_player(0)
-      return board[0]
+    (0...2).each do |idx|
+      if row_is_the_same_player(row_index(idx))
+        return board[row_index(idx)]
+      end
     end
-    if row_is_the_same_player(3)
-      return board[3]
-    end
-    if row_is_the_same_player(6)
-      return board[6]
-    end
+
     return '-'
   end
 
-  def row_is_the_same_player(row)
-    board[row] != '-' && board[row] == board[row + 1] && board[row + 1] == board[row + 2]
+  def row_index(index)
+    index * 3
+  end
+
+  def row_is_the_same_player(position)
+    board[position] != '-' && board[position] == board[position + 1] && board[position + 1] == board[position + 2]
   end
 end
 
