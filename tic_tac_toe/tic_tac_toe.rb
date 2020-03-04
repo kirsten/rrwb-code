@@ -28,19 +28,16 @@ class Game
     Game.new(board, i, player)
   end
 
+  def row_has_three_equal_values?(row_starting_position)
+    !space_available?(row_starting_position) &&
+    board[row_starting_position] == board[row_starting_position + 1] &&
+    board[row_starting_position + 1] == board[row_starting_position + 2]
+  end
+
   def winner
-    if !space_available?(0) && board[0] == board[1] &&
-        board[1] == board[2]
-      return board[0,1]
-    end
-    if !space_available?(3) && board[3] == board[4] &&
-        board[4] == board[5]
-      return board[3]
-    end
-    if !space_available?(6) && board[6] == board[7] &&
-        board[7] == board[8]
-      return board[6]
-    end
+    return board[0] if row_has_three_equal_values?(0)
+    return board[3] if row_has_three_equal_values?(3)
+    return board[6] if row_has_three_equal_values?(6)
     return BLANK_SPACE
   end
 end
