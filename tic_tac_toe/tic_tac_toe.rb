@@ -1,21 +1,27 @@
 class Game
   attr_accessor :board
 
-  def initialize(s, position=nil, player=nil)
-    @board = s.dup
-    @board[position] = player unless position == nil
+  BLANK_SPACE = "-".freeze
+
+  def initialize(board, position=nil, player=nil)
+    @board = board.dup
+    @board[position] = player if position != nil
   end
 
   def move(player)
-    (0..8).each do |i|
-      if board[i,1] == '-'
-        game = play(i, player)
-        return i if game.winner() == player
+    (0..8).each do |position|
+      if space_available?(position)
+        game = play(position, player)
+        return position if game.winner() == player
       end
     end
 
-    (0..8).each { |i| return i if board[i,1] == '-' }
+    (0..8).each { |position| return position if space_available?(position) }
     return -1
+  end
+
+  def space_available?(position)
+    board[position] == BLANK_SPACE
   end
 
   def play(i, player)
@@ -23,18 +29,18 @@ class Game
   end
 
   def winner
-    if board[0,1] != '-' && board[0,1] == board[1,1] &&
-        board[1,1] == board[2,1]
+    if !space_available?(0) && board[0] == board[1] &&
+        board[1] == board[2]
       return board[0,1]
     end
-    if board[3,1] != '-' && board[3,1] == board[4,1] &&
-        board[4,1] == board[5,1]
-      return board[3,1]
+    if !space_available?(3) && board[3] == board[4] &&
+        board[4] == board[5]
+      return board[3]
     end
-    if board[6,1] != '-' && board[6,1] == board[7,1] &&
-        board[7,1] == board[8,1]
-      return board[6,1]
+    if !space_available?(6) && board[6] == board[7] &&
+        board[7] == board[8]
+      return board[6]
     end
-    return '-'
+    return BLANK_SPACE
   end
 end
