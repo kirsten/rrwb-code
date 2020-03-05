@@ -58,7 +58,7 @@ class Board
   end
 
   def row_is_the_same_player(position)
-    @board[position] != '-' && @board[position] == @board[position + 1] && @board[position + 1] == @board[position + 2]
+    !position_empty?(position) && @board[position] == @board[position + 1] && @board[position + 1] == @board[position + 2]
   end
 
   def to_s
