@@ -1,6 +1,8 @@
 class Game
   attr_accessor :board
 
+  NO_MOVES_LEFT = -1
+
   def initialize(board_s, position=nil, player=nil)
     @board = Board.new(board_s)
     @board.place_mark_at(position, player) if position != nil
@@ -11,7 +13,7 @@ class Game
     return winning_move if winning_move
 
     return find_first_empty_position if find_first_empty_position
-    return -1
+    return NO_MOVES_LEFT
   end
 
   def find_winning_move(player)
