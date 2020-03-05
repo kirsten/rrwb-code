@@ -39,22 +39,22 @@ class Game
 
   def winner
     board.rows.each do |row|
-      if board.row_is_the_same_player(starting_position(row))
-        winning_mark = board[starting_position(row)]
+      if board.row_is_the_same_player(board.starting_position(row))
+        winning_mark = board[board.starting_position(row)]
         return winning_mark
       end
     end
     return '-'
-  end
-
-  def starting_position(row)
-    row * 3
   end
 end
 
 class Board
   def initialize(board)
     @board = board.dup
+  end
+
+  def starting_position(row)
+    row * 3
   end
 
   def rows
