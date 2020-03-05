@@ -17,7 +17,7 @@ class Game
   def find_winning_move(player)
     winning_move = nil
     (0..8).each do |position|
-      if @board.position_empty?(position)
+      if board.position_empty?(position)
         game = play(position, player)
         winning_move = position if game.winner() == player
       end
@@ -27,7 +27,7 @@ class Game
 
   def find_first_empty_position
     empty_position = nil 
-    (0..8).each { |position| empty_position = position if @board.position_empty?(position); break if empty_position }
+    (0..8).each { |position| empty_position = position if board.position_empty?(position); break if empty_position }
     empty_position
   end
 
@@ -37,7 +37,7 @@ class Game
 
   def winner
     (0...2).each do |row|
-      if @board.row_is_the_same_player(starting_position(row))
+      if board.row_is_the_same_player(starting_position(row))
         winning_mark = board[starting_position(row)]
         return winning_mark
       end
